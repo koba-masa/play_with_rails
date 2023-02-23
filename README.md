@@ -14,11 +14,7 @@ Ruby on Railsを遊び尽くすリポジトリ
 1. データベースを構築する
    ```sh
    docker-compose run --rm app bundle exec rails db:create
-   docker-compose run --rm app bundle exec rails db:migrate:main_system
+   docker-compose run --rm app bundle exec rails db:migrate
    docker-compose run --rm app bundle exec rails db:seed
-   docker-compose run --rm app bundle exec rails db:migrate:main_system RAILS_ENV=test
-   ```
-1. サブシステム用のDDLとDMLを流し込む
-   ```sh
-   docker-compose exec db psql -U postgres -d sub_database -f /tmp/docker_files/sub_database.sql
+   docker-compose run --rm app bundle exec rails db:migrate RAILS_ENV=test
    ```

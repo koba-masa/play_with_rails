@@ -9,6 +9,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 if Rails.env.development?
+  Daimyo.destroy_all
   Daimyo.create(
     [
       { name: '織田信長', birthed_on: Date.parse('1534-06-23'), died_on: Date.parse('1582-06-21') },
