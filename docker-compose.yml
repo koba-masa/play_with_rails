@@ -30,6 +30,7 @@ services:
       POSTGRES_INITDB_ARGS: "-E UTF8"
       TZ: "Asia/Tokyo"
     volumes:
+      - ./docker_files/db:/tmp/docker_files
       - db_data:/var/lib/postgresql/data
     ports:
       - 5432:5432
