@@ -4,6 +4,10 @@ Ruby on Railsを遊び尽くすリポジトリ
 ## 開発環境構築手順
 
 ### Docker環境のRubyを使用する場合
+1. Makefileをコピーする
+   ```sh
+   cp makefiles/Makefile.docker Makefile
+   ```
 1. Docker環境を構築する
    ```sh
    docker-compose build
@@ -26,6 +30,14 @@ Ruby on Railsを遊び尽くすリポジトリ
    ```
 
 ### ローカル環境のRubyを使用する場合
+1. Makefileをコピーする
+   ```sh
+   cp makefiles/Makefile.local Makefile
+   ```
+1. .envrcをコピーする
+   ```sh
+   cp .envrc.sample .envrc
+   ```
 1. Docker環境を構築する
    ```sh
    docker-compose -f compose.local.yml build
