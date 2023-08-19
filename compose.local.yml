@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:14.6
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: postgres123
+      POSTGRES_INITDB_ARGS: "-E UTF8"
+      TZ: "Asia/Tokyo"
+    volumes:
+      - ./docker_files/db:/tmp/docker_files
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+volumes:
+  db_data:
+    external: false
