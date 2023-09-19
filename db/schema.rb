@@ -34,4 +34,14 @@ ActiveRecord::Schema.define(version: 2023_09_19_143633) do
     t.string "kokushi", limit: 16, comment: "国司"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "password_digest", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["name"], name: "index_users_on_name", unique: true
+  end
+
 end
