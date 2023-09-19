@@ -10,18 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_19_125310) do
+ActiveRecord::Schema.define(version: 0) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "daimyos", force: :cascade do |t|
-    t.string "name", limit: 64, null: false, comment: "名前"
-    t.date "birthed_on", comment: "生年月日"
-    t.date "died_on", comment: "没年月日"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "kokushi", limit: 16, comment: "国司"
+  create_table "castles", id: :serial, force: :cascade do |t|
+    t.string "name", limit: 32, null: false
+    t.integer "prefecture", null: false
   end
 
+  create_table "prefectures", id: :serial, force: :cascade do |t|
+    t.string "name", limit: 32, null: false
+    t.string "name_en", limit: 32, null: false
+  end
+
+  add_foreign_key "castles", "prefectures", column: "prefecture", name: "castles_prefecture_fkey"
 end

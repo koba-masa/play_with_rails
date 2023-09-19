@@ -25,7 +25,7 @@ create:
 	docker-compose exec app bundle exec rails db:create
 
 migrate:
-	bundle exec rails db:migrate:main_system
+	bundle exec rails db:migrate
 
 rollback:
 	bundle exec rails db:rollback
