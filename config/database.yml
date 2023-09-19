@@ -13,6 +13,7 @@ development:
   sub_system:
     <<: *default
     database: sub_database_development
+    migrations_paths: db/migrate/sub_system
 
 test:
   primary:
@@ -21,6 +22,7 @@ test:
   sub_system:
     <<: *default
     database: sub_database_test
+    migrations_paths: db/migrate/sub_system
 
 production:
   primary:
@@ -29,3 +31,4 @@ production:
   sub_system:
     <<: *default
     database: sub_database_production
+    migrations_paths: db/migrate/sub_system
