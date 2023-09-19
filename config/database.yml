@@ -7,7 +7,7 @@ default: &default
   password: <%= ENV['POSTGRES_PASSWORD'] %>
 
 development:
-  main_system:
+  primary:
     <<: *default
     database: pwr_development
   sub_system:
@@ -15,7 +15,7 @@ development:
     database: sub_database_development
 
 test:
-  main_system:
+  primary:
     <<: *default
     database: pwr_test
   sub_system:
@@ -23,7 +23,7 @@ test:
     database: sub_database_test
 
 production:
-  main_system:
+  primary:
     <<: *default
     database: pwr_production
   sub_system:
