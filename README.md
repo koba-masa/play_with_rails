@@ -14,8 +14,17 @@ Ruby on Railsを遊び尽くすリポジトリ
 1. Docker環境を構築する
    ```sh
    docker-compose build
-   docker-compose up
+   docker-compose up -d
    ```
+1. Gemファイルのインストールする
+   ```sh
+   make install
+   ```
+1. DBを構築する
+   ```sh
+
+   ```
+
 1. サブシステム用のDDLとDMLを流し込む
    ```sh
    docker-compose exec db psql -U postgres -d sub_database -f /tmp/docker_files/sub_database.sql
