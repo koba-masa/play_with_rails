@@ -28,7 +28,8 @@ Ruby on Railsを遊び尽くすリポジトリ
    ```
 1. サブシステム用のDDLとDMLを流し込む
    ```sh
-   docker-compose exec db psql -U postgres -d sub_database -f /tmp/docker_files/sub_database.sql
+   docker-compose exec db psql -U postgres -d sub_database_development -f /tmp/docker_files/sub_database.sql
+   docker-compose exec db psql -U postgres -d sub_database_test -f /tmp/docker_files/sub_database.sql
    ```
 1. Railsを起動する
 - TODO
