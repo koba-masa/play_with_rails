@@ -6,7 +6,7 @@ RSpec.describe 'Daimyos' do
   let(:nobunaga) { create(:daimyo) }
   let(:hideyoshi) { create(:daimyo, :hideyoshi) }
 
-  describe 'GET /index' do
+  describe 'GET /daimyos' do
     subject(:get_daimyos) { get daimyos_url }
 
     context 'レコードが存在する場合' do
@@ -50,6 +50,31 @@ RSpec.describe 'Daimyos' do
 
       it '200 OKが返ること' do
         get_daimyos
+        expect(response).to have_http_status(:ok)
+        expect(response.parsed_body).to eq(expected_body)
+      end
+    end
+  end
+
+  describe 'GET /daimyos/:id' do
+    context 'レコードが存在する場合' do
+      subject(:get_daimyo) { get daimyo_url(daimyo_id) }
+
+      let(:daimyo_id) { nobunaga.id }
+      let(:expected_body) do
+        {
+          'daimyo' => {
+            'id' => nobunaga.id,
+            'name' => nobunaga.name,
+            'birthed_on' => nobunaga.birthed_on.strftime('%Y/%m/%d'),
+            'died_on' => nobunaga.died_on.strftime('%Y/%m/%d'),
+          },
+        }
+      end
+
+      it '200 OKが返ること' do
+        get_daimyo
+
         expect(response).to have_http_status(:ok)
         expect(response.parsed_body).to eq(expected_body)
       end
