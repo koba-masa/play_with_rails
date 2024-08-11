@@ -31,6 +31,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # TODO: Railsのバージョンアップ対応時に削除する
 gem 'psych', '~> 3.1'
 
+gem 'carrierwave', '~> 3.0'
+
 group :development, :test do
   gem 'factory_bot_rails'
   gem 'pry-rails'
