@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe StorageFileUploader, type: :model do
   after do
     FileUtils.rm_rf('public/test')
+    FileUtils.rm_rf('tmp/test')
   end
 
   describe 'アップロード' do
@@ -27,6 +28,28 @@ RSpec.describe StorageFileUploader, type: :model do
       uploader.store!(file)
 
       expect(File.exist?('public/test/uploads/storage_file/sample.csv')).to be_truthy
+    end
+  end
+
+  describe 'ダウンロード' do
+    before do
+      described_class.new.store!(
+        File.open('spec/fixtures/files/uploaders/storage_file/test.csv')
+      )
+    end
+
+    it 'ファイルをダウンロードする' do
+      uploader = described_class.new
+      uploader.retrieve_from_store!('test.csv')
+
+      expect(uploader.file.file).to eq(Rails.root.join('public/test/uploads/storage_file/test.csv').to_s)
+      # > uploader.file.read.encoding
+      # => #<Encoding:ASCII-8BIT>
+      # アップロードしたファイルがBinaryとして扱われているため、Binaryとして書き出して、比較する
+      downloaded_file_path = 'tmp/test/uploaders/storage_file/test.csv'
+      FileUtils.mkdir_p('tmp/test/uploaders/storage_file')
+      File.binwrite(downloaded_file_path, uploader.file.read)
+      expect(File.read(downloaded_file_path)).to eq(file_fixture('uploaders/storage_file/test.csv').read)
     end
   end
 end
