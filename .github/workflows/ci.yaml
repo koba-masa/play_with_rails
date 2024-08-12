@@ -11,6 +11,9 @@ jobs:
       DATABASE_HOST: 127.0.0.1
       POSTGRES_USERNAME: postgres
       POSTGRES_PASSWORD: postgres123
+      AWS_ACCESS_KEY_ID: minio
+      AWS_SECRET_ACCESS_KEY: minio123
+      AWS_ENDPOINT: http://127.0.0.1:9000
 
     services:
       db:
@@ -45,6 +48,16 @@ jobs:
 
       - name: Run RuboCop
         run: bundle exec rubocop
+
+      - name: Setup MinIO
+        run: |
+          mkdir -p /tmp/data/play-with-rails
+          docker run -d --name minio \
+                     -p 9000:9000 \
+                     -e "MINIO_ACCESS_KEY=${AWS_ACCESS_KEY_ID}" \
+                     -e "MINIO_SECRET_KEY=${AWS_SECRET_ACCESS_KEY}" \
+                     -v /tmp/data:/data \
+                     minio/minio server /data
 
       - name: Run RSpec
         run: bundle exec rspec
