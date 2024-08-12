@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Daimyos", type: :request do
+RSpec.describe 'Daimyos' do
   let(:nobunaga) { create(:daimyo) }
   let(:hideyoshi) { create(:daimyo, :hideyoshi) }
 
-  describe "GET /index" do
+  describe 'GET /index' do
     subject(:get_daimyos) { get daimyos_url }
 
     context 'レコードが存在する場合' do
@@ -27,14 +29,14 @@ RSpec.describe "Daimyos", type: :request do
               'name' => hideyoshi.name,
               'birthed_on' => hideyoshi.birthed_on.strftime('%Y/%m/%d'),
               'died_on' => hideyoshi.died_on.strftime('%Y/%m/%d'),
-            }
-          ]
+            },
+          ],
         }
       end
 
       it '200 OKが返ること' do
         get_daimyos
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
         expect(response.parsed_body).to eq(expected_body)
       end
     end
@@ -42,13 +44,13 @@ RSpec.describe "Daimyos", type: :request do
     context 'レコードが存在しない場合' do
       let(:expected_body) do
         {
-          'daimyos' => []
+          'daimyos' => [],
         }
       end
 
       it '200 OKが返ること' do
         get_daimyos
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
         expect(response.parsed_body).to eq(expected_body)
       end
     end
