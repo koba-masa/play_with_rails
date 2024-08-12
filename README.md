@@ -1,6 +1,8 @@
 # play_with_rails
 Ruby on Railsを遊び尽くすリポジトリ
 
+[![CI](https://github.com/koba-masa/play_with_rails/actions/workflows/ci.yaml/badge.svg)](https://github.com/koba-masa/play_with_rails/actions/workflows/ci.yaml)
+
 ## 開発環境構築手順
 1. 事前準備を行う
    - Docker環境のRubyを使用する場合
