@@ -32,6 +32,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'psych', '~> 3.1'
 
 gem 'carrierwave', '~> 3.0'
+gem 'fog-aws'
 
 group :development, :test do
   gem 'factory_bot_rails'
