@@ -7,6 +7,7 @@ AllCops:
   Exclude:
     - 'bin/**/*'
     - 'db/schema.rb'
+    - 'db/sub_system_schema.rb'
     - 'tmp/**/*'
     - 'vendor/**/*'
   NewCops: enable
