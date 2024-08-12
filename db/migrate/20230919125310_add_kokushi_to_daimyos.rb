@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddKokushiToDaimyos < ActiveRecord::Migration[6.0]
   def up
     add_column :daimyos, :kokushi, :string, limit: 16, null: true, comment: '国司'
