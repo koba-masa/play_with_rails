@@ -2,8 +2,15 @@
 
 class FogVerification
   def upload!(filename, body)
-    directory = s3_client.directories.new(key: 'play-with-rails')
     directory.files.create(key: "#{Rails.env}/fog_verification/#{filename}", body:)
+  end
+
+  def download(filename)
+    directory.files.new(key: "#{Rails.env}/fog_verification/#{filename}")
+  end
+
+  def list
+    directory.files.all(prefix: "#{Rails.env}/fog_verification/")
   end
 
   private
@@ -16,5 +23,9 @@ class FogVerification
       endpoint: ENV.fetch('AWS_ENDPOINT'),
       path_style: true,
     )
+  end
+
+  def directory
+    @directory ||= s3_client.directories.new(key: 'play-with-rails')
   end
 end
