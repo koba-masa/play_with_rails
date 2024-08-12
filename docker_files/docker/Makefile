@@ -1,31 +1,31 @@
 .PHONY: install, test, lint, format, console, seed, bash, create, migrate, rollback
 
 install:
-	docker-compose exec app bundle install
+	docker compose exec app bundle install
 
 test:
-	docker-compose exec app bundle exec rspec
+	docker compose exec app bundle exec rspec
 
 lint:
-	docker-compose exec app bundle exec rubocop
+	docker compose exec app bundle exec rubocop
 
 format:
-	docker-compose exec app bundle exec rubocop -A
+	docker compose exec app bundle exec rubocop -A
 
 console:
-	docker-compose exec app bundle exec rails c
+	docker compose exec app bundle exec rails c
 
 seed:
-	docker-compose exec app bundle exec rails db:seed
+	docker compose exec app bundle exec rails db:seed
 
 bash:
-	docker-compose exec app bash
+	docker compose exec app bash
 
 create:
-	docker-compose exec app bundle exec rails db:create
+	docker compose exec app bundle exec rails db:create
 
 migrate:
-	docker-compose exec app bundle exec rails db:migrate
+	docker compose exec app bundle exec rails db:migrate
 
 rollback:
-	docker-compose exec app bundle exec rails db:rollback
+	docker compose exec app bundle exec rails db:rollback
