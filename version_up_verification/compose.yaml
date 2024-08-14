@@ -1,0 +1,15 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./ruby
+    environment:
+      RAILS_ENV: development
+      TZ: "Asia/Tokyo"
+    volumes:
+      - .:/app
+      - app_bundle:/usr/local/bundle
+
+volumes:
+  app_bundle:
+    external: false

@@ -1,0 +1,5 @@
+gemfiles
+!./gemfiles/**/Gemfile
+!./gemfiles/**/Gemfile.lock
+!./compose.yaml
+!./ruby
